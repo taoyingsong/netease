@@ -191,7 +191,7 @@ line-height: 60px; text-align: center; font-size: 36px; font-weight: bold; color
 .footer .copyright p {line-height: 25px; font-size: 13px;}
 .footer .links {width: 111px; height: 101px; margin-left: 150px; margin-top: 82px;}
 .footer .aboutus {width: 61px; height: 103px; margin-left: 99px; margin-top: 81px;}
-.footer .aboutus .weibo{width:20px; height: 16px; padding:1px 0; background: url(../images/index_small_icon.png) 0 -106px no-repeat;}
+.footer .aboutus .weibo{margin-left: 8px; padding-left:20px; padding-top: 8px; background: url(../images/index_small_icon.png) 0 -100px no-repeat;}
 .footer .more {width: 60px; height: 72px; margin-left: 73px; margin-top: 81px;}
 @media screen and (max-width: 1205px) {
 	.footer .copyright {margin-left: 50px;}

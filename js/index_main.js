@@ -178,24 +178,27 @@ var initSlide = function() {
 		animated = true;
 
 		//每次渐变变动的透明度值 
-		var intervalOpacity = 1 / (time / interval);	
+		var intervalOpacity = Number((1 / (time / interval)).toFixed(2));
+		var origin = imgList[originIndex - 1];
+		var target = imgList[targetIndex - 1];
 		var go = function() {
-			var imgIndex = originIndex - 1;
-			var orig
-	        if (getOpacity(imgList[originIndex - 1]) > 0){
-	            if(imgList[targetIndex - 1].style.opacity === ''){
-	            	chgOpacity(imgList[targetIndex - 1], 0);
+			// var origin = imgList[originIndex - 1];
+			// var target = imgList[targetIndex - 1];
+			var originOpacity = Number(Number(getOpacity(origin)).toFixed(2));
+			var targetOpacity = Number(Number(getOpacity(target)).toFixed(2));
+	        if (originOpacity > 0) {
+	            if(target.style.opacity === '') {
+	            	chgOpacity(target, 0);
 	            } 
 
 	            //继续切换
-	            chgOpacity(imgList[originIndex - 1], getOpacity(imgList[originIndex - 1]) - intervalOpacity);
-
-	            //parseFloat ?
-	            chgOpacity(imgList[targetIndex - 1], parseFloat(getOpacity(imgList[targetIndex - 1])) + parseFloat(intervalOpacity));
+	            chgOpacity(origin, (originOpacity - intervalOpacity));
+	            chgOpacity(target, (targetOpacity + intervalOpacity));
 	            setTimeout(go, interval);
-	        }else{
-	            chgOpacity(imgList[originIndex - 1], 0);
-	            chgOpacity(imgList[targetIndex - 1], 1);
+	        }
+	        else {
+	            chgOpacity(origin, 0);
+	            chgOpacity(target, 1);
 	            animated = false;
 	        }
 		}
@@ -296,18 +299,20 @@ var initSlide = function() {
 
 	//尺寸随屏幕放缩
 	var autoChangeSlide = function() {
+		var imgNaturalWidth = 1652;
+		var imgNaturalHeight = 460;
 		var mSlideNode = document.querySelector(".m-slide");  //轮播DIV
 		var mSlideImg = mSlideNode.querySelector("img");  //轮播图片
 		var screenWidth = document.body.scrollWidth;
-		var imgNaturalWidth = getNaturalWidth(mSlideImg);
-		var imgNaturalHeight = getNaturalHeight(mSlideImg);
+		imgNaturalWidth = getNaturalWidth(mSlideImg);
+		imgNaturalHeight = getNaturalHeight(mSlideImg);
 		if(screenWidth > imgNaturalWidth) {
 			mSlideNode.style.width = imgNaturalWidth + "px";
 			mSlideNode.style.height = imgNaturalHeight + "px";
 		}
 		else {
 			mSlideNode.style.width = "100%";
-			mSlideNode.style.height = screenWidth / (imgNaturalWidth / imgNaturalHeight) + "px";
+			mSlideNode.style.height = Math.ceil(screenWidth / (imgNaturalWidth / imgNaturalHeight)) + "px";
 		}
 	}
 	window.onresize = autoChangeSlide;
