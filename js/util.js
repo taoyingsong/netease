@@ -50,16 +50,16 @@ function dataset(element) {
 /**
  * innerText原型方法扩展
  */
-(function(){
+// (function(){
   if (!('innerText' in document.body)) {
-    HTMLElement.prototype._defineGetter_("innerText", function() {
+    HTMLElement.prototype.__defineGetter__("innerText", function() {
         return this.textContent;
     });
-    HTMLElement.prototype._defineSetter_("innerText", function(s) {
+    HTMLElement.prototype.__defineSetter__("innerText", function(s) {
         return this.textContent = s;
     });
 }
-})();
+// })();
 
 
 /*************************************** Cookie 操作 ***************************************/
