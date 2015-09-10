@@ -118,9 +118,9 @@ line-height: 60px; text-align: center; font-size: 36px; font-weight: bold; color
 }
 
 .courses .titlebar li {float: left; width: 200px; height: 50px; border: 1px solid #ecebeb; text-align: center; border-radius: 2px; font: 20px/50px "Microsoft YaHei"; cursor: pointer;}
-.courses .titlebar li:first-child {color: #fff; background-color: #39a030;}
-.courses .titlebar li:last-child {color: #000; background-color: #fff;}
-.courses .titlebar li:last-child:hover {color: #fff; background-color: #39a030;}
+.courses .product-design {color: #fff; background-color: #39a030;}
+.courses .program-lang {color: #000; background-color: #fff;}
+.courses .program-lang:hover {color: #fff; background-color: #39a030;}
 
 .courses .details {padding-top: 11px; }
 .courses .details .item {float: left; width: 223px; height: 226px; margin-right: 18px; margin-top: 18px; padding: 1px; border: 1px solid #f1f1f1; background-color: #fff;}

@@ -299,13 +299,17 @@ var initSlide = function() {
 
 	//尺寸随屏幕放缩
 	var autoChangeSlide = function() {
-		var imgNaturalWidth = 1652;
-		var imgNaturalHeight = 460;
 		var mSlideNode = document.querySelector(".m-slide");  //轮播DIV
 		var mSlideImg = mSlideNode.querySelector("img");  //轮播图片
 		var screenWidth = document.body.scrollWidth;
-		imgNaturalWidth = getNaturalWidth(mSlideImg);
-		imgNaturalHeight = getNaturalHeight(mSlideImg);
+		var imgNaturalWidth = getNaturalWidth(mSlideImg);
+		if(!imgNaturalWidth) {
+			imgNaturalWidth = 1652;
+		}
+		var imgNaturalHeight = getNaturalHeight(mSlideImg);
+		if(!imgNaturalHeight) {
+			imgNaturalHeight = 460;
+		}
 		if(screenWidth > imgNaturalWidth) {
 			mSlideNode.style.width = imgNaturalWidth + "px";
 			mSlideNode.style.height = imgNaturalHeight + "px";
@@ -359,10 +363,10 @@ var initCourseList = function() {
 		programLangBtn.style.cssText = 'background-color: #fff; color: #000;';
 		addClass(productDesignBtn, 'selected');
 		removeClass(programLangBtn, 'selected');
-		addEvent(programLangBtn, 'mouseenter', langBtnHandler1);
-		addEvent(programLangBtn, 'mouseleave', langBtnHandler2);
-		delEvent(productDesignBtn, 'mouseenter', designBtnHandler1);
-		delEvent(productDesignBtn, 'mouseleave', designBtnHandler2);
+		addEvent(programLangBtn, 'mouseover', langBtnHandler1);
+		addEvent(programLangBtn, 'mouseout', langBtnHandler2);
+		delEvent(productDesignBtn, 'mouseover', designBtnHandler1);
+		delEvent(productDesignBtn, 'mouseout', designBtnHandler2);
 		if(coursesNodeWidth > initCosNodeWidth) {
 			courseSelect(productDesignType);
 		}
@@ -378,10 +382,10 @@ var initCourseList = function() {
 		programLangBtn.style.cssText = 'background-color: #39a030; color: #fff;';
 		addClass(programLangBtn, 'selected');
 		removeClass(productDesignBtn, 'selected');
-		addEvent(productDesignBtn, 'mouseenter', designBtnHandler1);
-		addEvent(productDesignBtn, 'mouseleave', designBtnHandler2);
-		delEvent(programLangBtn, 'mouseenter', langBtnHandler1);
-		delEvent(programLangBtn, 'mouseleave', langBtnHandler2);
+		addEvent(productDesignBtn, 'mouseover', designBtnHandler1);
+		addEvent(productDesignBtn, 'mouseout', designBtnHandler2);
+		delEvent(programLangBtn, 'mouseover', langBtnHandler1);
+		delEvent(programLangBtn, 'mouseout', langBtnHandler2);
 		courseSelect(productLangType);
 		if(coursesNodeWidth > initCosNodeWidth) {
 			courseSelect(productLangType);
@@ -514,7 +518,7 @@ var initCourseList = function() {
 
 
 					//对课程节点绑定mousein事件,注意:没用innerHTML方式向容器中添加课程div，这里绑定的事件不会在下次追加时失效
-					addEvent(item, 'mouseenter', function() {
+					xb.addEvent(item, 'mouseenter', function() {
 						var OFFSET = 9;
 						var data = dataset(item);
 
@@ -549,7 +553,7 @@ var initCourseList = function() {
 
 
 					//对课程的悬浮节点绑定mouseout事件
-					addEvent(hoverDetail, 'mouseleave', function() {
+					xb.addEvent(hoverDetail, 'mouseleave', function() {
 						hoverDetail.style.display = 'none';
 					});
 
@@ -683,10 +687,10 @@ var initVideo = function() {
 	var videoCoverImg = document.querySelector('.courses .agency img');
 
 	//鼠标事件修改视频图片透明度
-	addEvent(document.querySelector('.courses .mask img'), 'mouseenter', function() {
+	xb.addEvent(document.querySelector('.courses .mask img'), 'mouseenter', function() {
 		videoCoverImg.style.cssText = "opacity: 1; filter:alpha(opacity=100);";
 	});	
-	addEvent(document.querySelector('.courses .mask img'), 'mouseleave', function() {
+	xb.addEvent(document.querySelector('.courses .mask img'), 'mouseleave', function() {
 		videoCoverImg.style.cssText = "opacity: .6; filter:alpha(opacity=60);";
 	});
 
@@ -827,10 +831,10 @@ var initScroll = function() {
 
 
 	//鼠标进入退出hot滚轮区滑动条效果
-	addEvent(document.querySelector('.m-container'), 'mouseenter', function() {
+	xb.addEvent(document.querySelector('.m-container'), 'mouseenter', function() {
 		document.querySelector('.line').style.display = 'block';
 	});
-	addEvent(document.querySelector('.m-container'), 'mouseleave', function() {
+	xb.addEvent(document.querySelector('.m-container'), 'mouseleave', function() {
 		document.querySelector('.line').style.display = 'none';
 		addEvent(window.document.body, type, function(event) {
 			if(event && event.preventDefault) {
